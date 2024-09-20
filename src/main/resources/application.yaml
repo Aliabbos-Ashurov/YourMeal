@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: YourMeal
+  profiles:
+    active: prod
+app:
+  log-mode: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/yourmeal
+    username: postgres
+    password: abbos2004postgresql
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    open-in-view: false
+  h2:
+    console:
+      enabled: false
+server:
+  port: 8080
