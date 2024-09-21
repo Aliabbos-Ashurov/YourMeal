@@ -39,6 +39,7 @@ public class Order extends Auditable {
     @Column(name = "type", nullable = false, length = 30)
     private OrderType type;
 
+    @Builder.Default
     @Column(name = "total_amount", nullable = false)
     private Double totalAmount = 0.0D;
 
