@@ -13,4 +13,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT p FROM Product p LEFT JOIN FETCH p.compound")
     List<Product> findAllWithCompound();
+
+    @Query("SELECT p FROM Product p LEFT JOIN FETCH p.compound WHERE p.id = ?1")
+    Product findById(long id);
 }

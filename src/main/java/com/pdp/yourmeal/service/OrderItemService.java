@@ -8,6 +8,7 @@ import com.pdp.yourmeal.repository.OrderItemRepository;
 import com.pdp.yourmeal.service.base.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,7 @@ public class OrderItemService implements BaseService<OrderItem, Long> {
     private final OrderItemRepository orderItemRepository;
 
 
+    @Transactional
     public OrderItem getOrCreate(Order order, Product product, int quantity) {
         Optional<OrderItem> existingOrderItem = order.getOrderItems().stream()
                 .filter(item -> item.getProduct().getId().equals(product.getId()))

@@ -1,6 +1,7 @@
 package com.pdp.yourmeal.dto.request;
 
 import com.pdp.yourmeal.dto.DTO;
+import jakarta.validation.constraints.NotBlank;
 import lombok.NonNull;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,6 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
  **/
 public record CreateCategoryDTO(
         @NonNull MultipartFile icon,
-        @NonNull String title
+        @NotBlank @NonNull String title
 ) implements DTO {
 }

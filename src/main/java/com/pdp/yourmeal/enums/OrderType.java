@@ -12,7 +12,8 @@ import lombok.Getter;
 public enum OrderType {
 
     PICKUP("PICKUP"),
-    DELIVERY("DELIVERY");
+    DELIVERY("DELIVERY"),
+    DEFAULT("DEFAULT");
 
     private final String type;
 }

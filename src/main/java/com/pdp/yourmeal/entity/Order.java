@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,19 +26,23 @@ public class Order extends Auditable {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem> orderItems;
+    @Builder.Default
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address deliveryAddress;
 
     @Builder.Default
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 30)
     private OrderStatus status = OrderStatus.CREATED;
 
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, length = 30)
-    private OrderType type;
+    private OrderType type = OrderType.DEFAULT;
 
     @Builder.Default
     @Column(name = "total_amount", nullable = false)

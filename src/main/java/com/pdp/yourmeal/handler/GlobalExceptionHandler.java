@@ -6,9 +6,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 /**
  * @author Aliabbos Ashurov
@@ -20,6 +22,11 @@ public class GlobalExceptionHandler {
 
     @Value("${app.log-mode}")
     private boolean LOG_MODE;
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ErrorMessageDTO handleMaxSizeException(MaxUploadSizeExceededException ex, HttpServletRequest request) {
+        return ErrorMessageDTO.of("MAX_UPLOAD_SIZE_EXCEEDED", ex.getMessage(), request.getRequestURI());
+    }
 
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

@@ -14,6 +14,6 @@ public record ConfirmOrderDTO(
         @NonNull String fullname,
         @NonNull String phone,
         @NonNull OrderType type,
-        Address address
+        AddressDTO address
 ) implements DTO {
 }

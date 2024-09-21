@@ -1,6 +1,7 @@
 package com.pdp.yourmeal.dto.request;
 
 import com.pdp.yourmeal.dto.DTO;
+import jakarta.validation.constraints.NotBlank;
 import lombok.NonNull;
 
 /**
@@ -8,9 +9,9 @@ import lombok.NonNull;
  * @since 21/September/2024  12:02
  **/
 public record UserRegisterDTO(
-        @NonNull String fullname,
-        @NonNull String username,
-        @NonNull String password,
-        @NonNull String phone
+        @NotBlank @NonNull String fullname,
+        @NotBlank @NonNull String username,
+        @NotBlank @NonNull String password,
+        @NotBlank @NonNull String phone
 ) implements DTO {
 }

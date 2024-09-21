@@ -11,6 +11,7 @@ import com.pdp.yourmeal.service.aws.S3Service;
 import com.pdp.yourmeal.service.base.BaseDtoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -51,7 +52,9 @@ public class ProductService implements BaseDtoService<Product, Long, ProductDTO>
         return productMapper.toProductDTO(product);
     }
 
+
     @Override
+    @Transactional
     public ProductDTO findById(Long id) {
         Product product = productRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Product Not Found By Id: {0}", id));
