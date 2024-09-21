@@ -49,6 +49,10 @@ public class UserService implements BaseDtoService<User, Long, UserDTO> {
         return userMapper.toUserDTO(user);
     }
 
+    public User findByIdUser(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User Not Found By Id: {0}", id));
+    }
+
     @Override
     public List<UserDTO> findAll() {
         return userRepository.findAll().stream()

@@ -1,6 +1,5 @@
 package com.pdp.yourmeal.dto;
 
-import com.pdp.yourmeal.entity.OrderItem;
 import lombok.NonNull;
 
 /**

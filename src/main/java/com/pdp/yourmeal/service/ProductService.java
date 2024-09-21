@@ -35,6 +35,11 @@ public class ProductService implements BaseDtoService<Product, Long, ProductDTO>
         return productMapper.toProductDTO(product);
     }
 
+    public Product findByIdProduct(Long id) {
+        return productRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Product Not Found By Id: {0}", id));
+    }
+
     @Override
     public List<ProductDTO> findAll() {
         return productRepository.findAll().stream()

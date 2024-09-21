@@ -1,12 +1,9 @@
 package com.pdp.yourmeal.dto;
 
 import com.pdp.yourmeal.entity.Order;
-import com.pdp.yourmeal.entity.OrderItem;
-import com.pdp.yourmeal.enums.OrderStatus;
 import lombok.NonNull;
 
 import java.util.List;
-import java.util.stream.DoubleStream;
 
 /**
  * @author Aliabbos Ashurov
@@ -20,8 +17,7 @@ public record OrderDTO(
         @NonNull Double total
 ) implements DTO {
     public static OrderDTO of(Order order, List<OrderItemDTO> items) {
-        double totalAmount = 0;
-        double sum = items.stream().mapToDouble(item -> item.price() + totalAmount).sum();
+        double sum = items.stream().mapToDouble(OrderItemDTO::price).sum();
         return new OrderDTO(order.getId(), order.getUser().getId(), items, items.size(), sum);
     }
 }

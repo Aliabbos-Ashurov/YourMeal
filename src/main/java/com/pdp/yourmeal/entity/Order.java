@@ -2,10 +2,7 @@ package com.pdp.yourmeal.entity;
 
 import com.pdp.yourmeal.enums.OrderStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -34,9 +31,10 @@ public class Order extends Auditable {
     @JoinColumn(name = "address_id")
     private Address deliveryAddress;
 
-    @Column(name = "status", nullable = false, length = 30)
-    private OrderStatus status;
+    @Builder.Default
+    @Column(name = "status", nullable = false, length = 30,columnDefinition = "CREATED")
+    private OrderStatus status = OrderStatus.CREATED;
 
     @Column(name = "total_amount", nullable = false)
-    private Double totalAmount;
+    private Double totalAmount = 0.0D;
 }
