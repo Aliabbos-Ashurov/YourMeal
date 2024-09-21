@@ -1,5 +1,6 @@
 package com.pdp.yourmeal.service;
 
+import com.pdp.yourmeal.dto.request.UserRegisterDTO;
 import com.pdp.yourmeal.dto.response.UserDTO;
 import com.pdp.yourmeal.entity.User;
 import com.pdp.yourmeal.handler.exception.UserNotFoundException;
@@ -31,11 +32,21 @@ public class UserService implements BaseDtoService<User, Long, UserDTO> {
         User user = userRepository.findByPhone(phone).orElseThrow(() -> new UserNotFoundException("User not found with phone: {0}", phone));
         return userMapper.toUserDTO(user);
     }
+
     @Override
     public UserDTO save(UserDTO dto) {
         User user = userMapper.toUser(dto);
         User savingUser = userRepository.save(user);
         return userMapper.toUserDTO(savingUser);
+    }
+
+    public void save(UserRegisterDTO dto) {
+        userRepository.save(User.builder()
+                .fullname(dto.fullname())
+                .username(dto.username())
+                .phone(dto.phone())
+                .password(dto.password())
+                .build());
     }
 
     @Override
@@ -64,4 +75,5 @@ public class UserService implements BaseDtoService<User, Long, UserDTO> {
     public boolean existsById(Long id) {
         return userRepository.existsById(id);
     }
+
 }

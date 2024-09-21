@@ -11,11 +11,6 @@ aws:
     access-key: AKIA3CMCCOL5V7KWWJVN
     secret-key: VKEfDETEE7whRfRBb2bnDoQejHwi8vP5a/fkU4/V
     bucket-name: your-meal
-logging:
-  level:
-    software:
-      amazon:
-        awssdk: DEBUG
 ---
 spring:
   config:

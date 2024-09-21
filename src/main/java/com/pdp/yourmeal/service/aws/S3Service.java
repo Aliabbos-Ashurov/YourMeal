@@ -41,7 +41,7 @@ public class S3Service {
                 .build();
 
         s3Client.putObject(putObjectRequest, RequestBody.fromBytes(file.getBytes()));
-        return fileKey;
+        return getFileUrl(uniqueFileName);
     }
 
     public ResponseBytes<GetObjectResponse> downloadFile(String key) {
@@ -62,13 +62,16 @@ public class S3Service {
     }
 
     private String generateFileName(MultipartFile file) {
-        return java.util.UUID.randomUUID() + "-" + Objects.requireNonNull(file.getOriginalFilename()).replace(" ", "_");
+        return java.util.UUID.randomUUID().toString().substring(0,5) + "-" + Objects.requireNonNull(file.getOriginalFilename()).replace(" ", "_");
     }
 
     private String getFileUrl(String key) {
-        return String.format("https://%s.s3.%s.amazonaws.com/public/%s",
+        return String.format("https://%s.s3.amazonaws.com/public/%s",
+                bucketName,
+                key);
+        /*return String.format("https://%s.s3.%s.amazonaws.com/public/%s",
                 bucketName,
                 Region.US_EAST_1.id(),
-                key);
+                key);*/
     }
 }

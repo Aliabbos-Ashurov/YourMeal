@@ -5,6 +5,8 @@ import com.pdp.yourmeal.repository.AuthRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * @author Aliabbos Ashurov
  * @since 21/September/2024  12:00
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private final AuthRepository authRepository;
 
-    public User findByUsername(String username) {
+    public Optional<User> findByUsername(String username) {
         return authRepository.findByUsername(username);
     }
 }

@@ -19,6 +19,6 @@ public record ProductDTO(
         double calories,
         @NonNull String description,
         @NonNull List<String> compound,
-        @NonNull Category category
+        @NonNull String category
 ) implements DTO {
 }

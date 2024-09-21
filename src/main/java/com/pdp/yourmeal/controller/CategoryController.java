@@ -1,16 +1,16 @@
 package com.pdp.yourmeal.controller;
 
+import com.pdp.yourmeal.dto.request.CreateCategoryDTO;
 import com.pdp.yourmeal.dto.response.CategoryDTO;
 import com.pdp.yourmeal.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +23,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
+
+    @Operation(summary = "Create a new product")
+    @PostMapping(value = "/create", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CategoryDTO> createCategory(@ModelAttribute CreateCategoryDTO categoryDTO) {
+        return ResponseEntity.ok(categoryService.create(categoryDTO));
+    }
 
     @Operation(summary = "Get all categories", description = "Retrieves a list of all categories.")
     @ApiResponse(responseCode = "200", description = "Successful retrieval of categories")

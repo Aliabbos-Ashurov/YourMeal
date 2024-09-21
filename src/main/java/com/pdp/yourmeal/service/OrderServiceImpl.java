@@ -4,6 +4,7 @@ import com.pdp.yourmeal.dto.request.ConfirmOrderDTO;
 import com.pdp.yourmeal.dto.request.CreateOrderDTO;
 import com.pdp.yourmeal.dto.response.OrderDTO;
 import com.pdp.yourmeal.dto.response.OrderItemDTO;
+import com.pdp.yourmeal.dto.response.ProductDTO;
 import com.pdp.yourmeal.entity.Address;
 import com.pdp.yourmeal.entity.Order;
 import com.pdp.yourmeal.entity.OrderItem;
@@ -15,6 +16,7 @@ import com.pdp.yourmeal.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -33,6 +35,19 @@ public class OrderServiceImpl implements OrderService {
     private final ProductService productService;
     private final ProductMapper productMapper;
     private final AddressService addressService;
+
+    @Override
+    public OrderDTO getUserOrder(Long userId) {
+        Order order = orderRepository.findByUserIdAndStatus(userId, OrderStatus.CREATED);
+        if (Objects.isNull(order)) throw new OrderNotFoundException("Order not found with user-id: {0}", userId);
+        List<OrderItemDTO> list = order.getOrderItems().stream()
+                .map(orderItem -> {
+                    ProductDTO productDTO = productMapper.toProductDTO(orderItem.getProduct());
+                    return OrderItemDTO.of(productDTO, orderItem.getQuantity());
+                })
+                .collect(Collectors.toList());
+        return OrderDTO.of(order, list);
+    }
 
     @Override
     public OrderDTO getOrCreate(CreateOrderDTO dto) {
@@ -56,6 +71,7 @@ public class OrderServiceImpl implements OrderService {
         return OrderDTO.of(order, itemDTOs);
     }
 
+    @Override
     public boolean confirmOrder(ConfirmOrderDTO dto) {
         Order order = orderRepository.findById(dto.orderId())
                 .orElseThrow(() -> new OrderNotFoundException("Order Not Found With Id: " + dto.orderId()));

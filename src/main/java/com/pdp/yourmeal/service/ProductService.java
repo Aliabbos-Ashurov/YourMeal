@@ -45,7 +45,7 @@ public class ProductService implements BaseDtoService<Product, Long, ProductDTO>
                 .category(category)
                 .weight(dto.weight())
                 .compound(dto.compound())
-                .image("https://your-meal.s3.us-east-1.amazonaws.com/" + imageURL)
+                .image(imageURL)
                 .build();
         productRepository.save(product);
         return productMapper.toProductDTO(product);
@@ -58,6 +58,12 @@ public class ProductService implements BaseDtoService<Product, Long, ProductDTO>
         return productMapper.toProductDTO(product);
     }
 
+    public List<ProductDTO> findAllByCategory(String title) {
+        return productRepository.findAllByCategoryTitle(title).stream()
+                .map(productMapper::toProductDTO)
+                .toList();
+    }
+
     public Product findByIdProduct(Long id) {
         return productRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Product Not Found By Id: {0}", id));
@@ -65,7 +71,7 @@ public class ProductService implements BaseDtoService<Product, Long, ProductDTO>
 
     @Override
     public List<ProductDTO> findAll() {
-        return productRepository.findAll().stream()
+        return productRepository.findAllWithCompound().stream()
                 .map(productMapper::toProductDTO)
                 .toList();
     }
