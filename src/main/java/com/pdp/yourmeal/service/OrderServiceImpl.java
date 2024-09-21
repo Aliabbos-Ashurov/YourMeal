@@ -1,7 +1,13 @@
 package com.pdp.yourmeal.service;
 
-import com.pdp.yourmeal.dto.*;
-import com.pdp.yourmeal.entity.*;
+import com.pdp.yourmeal.dto.ConfirmOrderDTO;
+import com.pdp.yourmeal.dto.CreateOrderDTO;
+import com.pdp.yourmeal.dto.OrderDTO;
+import com.pdp.yourmeal.dto.OrderItemDTO;
+import com.pdp.yourmeal.entity.Address;
+import com.pdp.yourmeal.entity.Order;
+import com.pdp.yourmeal.entity.OrderItem;
+import com.pdp.yourmeal.entity.Product;
 import com.pdp.yourmeal.enums.OrderStatus;
 import com.pdp.yourmeal.handler.exception.OrderNotFoundException;
 import com.pdp.yourmeal.mapper.ProductMapper;
@@ -9,13 +15,9 @@ import com.pdp.yourmeal.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static org.apache.commons.collections4.CollectionUtils.collect;
 
 /**
  * @author Aliabbos Ashurov

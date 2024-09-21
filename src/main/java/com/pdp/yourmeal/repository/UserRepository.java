@@ -2,7 +2,6 @@ package com.pdp.yourmeal.repository;
 
 import com.pdp.yourmeal.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 

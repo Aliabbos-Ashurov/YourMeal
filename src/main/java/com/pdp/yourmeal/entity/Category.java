@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
+
 /**
  * @author Aliabbos Ashurov
  * @since 19/September/2024  19:47
@@ -23,6 +25,6 @@ public class Category extends Auditable {
     @Column(name = "icon")
     private String icon;
 
-    @Column(name = "title", nullable = false, length = 100)
+    @Column(name = "title", nullable = false, length = 100, unique = true)
     private String title;
 }
