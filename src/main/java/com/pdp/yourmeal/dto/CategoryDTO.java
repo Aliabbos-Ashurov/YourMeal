@@ -2,6 +2,8 @@ package com.pdp.yourmeal.dto;
 
 import lombok.NonNull;
 
+import java.io.Serializable;
+
 /**
  * @author Aliabbos Ashurov
  * @since 20/September/2024  09:11

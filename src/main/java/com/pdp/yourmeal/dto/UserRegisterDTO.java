@@ -4,12 +4,12 @@ import lombok.NonNull;
 
 /**
  * @author Aliabbos Ashurov
- * @since 19/September/2024  21:13
+ * @since 21/September/2024  12:02
  **/
-public record UserDTO(
-        @NonNull Long id,
+public record UserRegisterDTO(
         @NonNull String fullname,
         @NonNull String username,
+        @NonNull String password,
         @NonNull String phone
 ) implements DTO {
 }
