@@ -2,7 +2,9 @@ package com.pdp.yourmeal.mapper;
 
 import com.pdp.yourmeal.dto.CategoryDTO;
 import com.pdp.yourmeal.entity.Category;
-import org.mapstruct.*;
+import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
 
 /**
  * @author Aliabbos Ashurov

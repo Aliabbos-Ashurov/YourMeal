@@ -1,6 +1,5 @@
 package com.pdp.yourmeal.dto;
 
-import com.pdp.yourmeal.entity.Category;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.NonNull;

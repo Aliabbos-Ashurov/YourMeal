@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import java.io.Serializable;
-
 /**
  * @author Aliabbos Ashurov
  * @since 19/September/2024  19:47

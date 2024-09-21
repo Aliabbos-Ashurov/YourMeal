@@ -1,6 +1,5 @@
 package com.pdp.yourmeal.service;
 
-import com.pdp.yourmeal.dto.CategoryDTO;
 import com.pdp.yourmeal.dto.CreateProductDTO;
 import com.pdp.yourmeal.dto.ProductDTO;
 import com.pdp.yourmeal.entity.Category;

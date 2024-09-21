@@ -2,14 +2,12 @@ package com.pdp.yourmeal.controller;
 
 import com.pdp.yourmeal.dto.CreateProductDTO;
 import com.pdp.yourmeal.dto.ProductDTO;
-import com.pdp.yourmeal.entity.Product;
 import com.pdp.yourmeal.service.CategoryService;
 import com.pdp.yourmeal.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
