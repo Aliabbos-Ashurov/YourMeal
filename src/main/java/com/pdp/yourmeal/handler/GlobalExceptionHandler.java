@@ -1,6 +1,6 @@
 package com.pdp.yourmeal.handler;
 
-import com.pdp.yourmeal.dto.ErrorMessageDTO;
+import com.pdp.yourmeal.dto.response.ErrorMessageDTO;
 import com.pdp.yourmeal.handler.exception.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;

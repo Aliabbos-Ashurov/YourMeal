@@ -1,6 +1,6 @@
 package com.pdp.yourmeal.mapper;
 
-import com.pdp.yourmeal.dto.ProductDTO;
+import com.pdp.yourmeal.dto.response.ProductDTO;
 import com.pdp.yourmeal.entity.Product;
 import org.mapstruct.Mapper;
 

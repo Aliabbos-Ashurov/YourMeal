@@ -1,6 +1,6 @@
 package com.pdp.yourmeal.mapper;
 
-import com.pdp.yourmeal.dto.CategoryDTO;
+import com.pdp.yourmeal.dto.response.CategoryDTO;
 import com.pdp.yourmeal.entity.Category;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;

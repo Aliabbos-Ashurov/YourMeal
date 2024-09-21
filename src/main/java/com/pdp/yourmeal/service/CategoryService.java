@@ -1,6 +1,6 @@
 package com.pdp.yourmeal.service;
 
-import com.pdp.yourmeal.dto.CategoryDTO;
+import com.pdp.yourmeal.dto.response.CategoryDTO;
 import com.pdp.yourmeal.entity.Category;
 import com.pdp.yourmeal.handler.exception.CategoryNotFoundException;
 import com.pdp.yourmeal.mapper.CategoryMapper;

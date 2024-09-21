@@ -1,6 +1,6 @@
 package com.pdp.yourmeal.service;
 
-import com.pdp.yourmeal.dto.UserDTO;
+import com.pdp.yourmeal.dto.response.UserDTO;
 import com.pdp.yourmeal.entity.User;
 import com.pdp.yourmeal.handler.exception.UserNotFoundException;
 import com.pdp.yourmeal.mapper.UserMapper;

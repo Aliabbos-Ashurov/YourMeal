@@ -1,9 +1,9 @@
 package com.pdp.yourmeal.service;
 
-import com.pdp.yourmeal.dto.ConfirmOrderDTO;
-import com.pdp.yourmeal.dto.CreateOrderDTO;
-import com.pdp.yourmeal.dto.OrderDTO;
-import com.pdp.yourmeal.dto.OrderItemDTO;
+import com.pdp.yourmeal.dto.request.ConfirmOrderDTO;
+import com.pdp.yourmeal.dto.request.CreateOrderDTO;
+import com.pdp.yourmeal.dto.response.OrderDTO;
+import com.pdp.yourmeal.dto.response.OrderItemDTO;
 import com.pdp.yourmeal.entity.Address;
 import com.pdp.yourmeal.entity.Order;
 import com.pdp.yourmeal.entity.OrderItem;

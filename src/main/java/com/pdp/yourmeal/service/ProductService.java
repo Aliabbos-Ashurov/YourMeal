@@ -1,7 +1,7 @@
 package com.pdp.yourmeal.service;
 
-import com.pdp.yourmeal.dto.CreateProductDTO;
-import com.pdp.yourmeal.dto.ProductDTO;
+import com.pdp.yourmeal.dto.request.CreateProductDTO;
+import com.pdp.yourmeal.dto.response.ProductDTO;
 import com.pdp.yourmeal.entity.Category;
 import com.pdp.yourmeal.entity.Product;
 import com.pdp.yourmeal.handler.exception.ResourceNotFoundException;

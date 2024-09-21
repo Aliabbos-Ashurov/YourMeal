@@ -1,5 +1,6 @@
-package com.pdp.yourmeal.dto;
+package com.pdp.yourmeal.dto.response;
 
+import com.pdp.yourmeal.dto.DTO;
 import lombok.NonNull;
 
 import java.time.LocalDateTime;

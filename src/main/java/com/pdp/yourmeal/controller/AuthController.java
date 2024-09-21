@@ -1,6 +1,6 @@
 package com.pdp.yourmeal.controller;
 
-import com.pdp.yourmeal.dto.UserRegisterDTO;
+import com.pdp.yourmeal.dto.request.UserRegisterDTO;
 import com.pdp.yourmeal.service.AuthService;
 import com.pdp.yourmeal.service.UserService;
 import lombok.RequiredArgsConstructor;

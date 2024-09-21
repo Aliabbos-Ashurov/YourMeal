@@ -1,7 +1,7 @@
 package com.pdp.yourmeal.service;
 
-import com.pdp.yourmeal.dto.CreateOrderDTO;
-import com.pdp.yourmeal.dto.OrderDTO;
+import com.pdp.yourmeal.dto.request.CreateOrderDTO;
+import com.pdp.yourmeal.dto.response.OrderDTO;
 
 /**
  * @author Aliabbos Ashurov

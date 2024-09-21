@@ -1,6 +1,6 @@
 package com.pdp.yourmeal.controller;
 
-import com.pdp.yourmeal.dto.CategoryDTO;
+import com.pdp.yourmeal.dto.response.CategoryDTO;
 import com.pdp.yourmeal.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

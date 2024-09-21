@@ -1,5 +1,6 @@
-package com.pdp.yourmeal.dto;
+package com.pdp.yourmeal.dto.request;
 
+import com.pdp.yourmeal.dto.DTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.NonNull;
