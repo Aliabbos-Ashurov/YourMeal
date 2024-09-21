@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 /**
  * @author Aliabbos Ashurov
  * @since 19/September/2024  19:56
@@ -15,7 +17,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 @Entity
 public class OrderItem extends Auditable {
-
 
     @OneToOne
     @JoinColumn(name = "product_id", nullable = false)

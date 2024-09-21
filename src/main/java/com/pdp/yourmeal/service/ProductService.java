@@ -10,6 +10,7 @@ import com.pdp.yourmeal.repository.ProductRepository;
 import com.pdp.yourmeal.service.aws.S3Service;
 import com.pdp.yourmeal.service.base.BaseDtoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,24 +56,28 @@ public class ProductService implements BaseDtoService<Product, Long, ProductDTO>
 
     @Override
     @Transactional
+    @Cacheable(value = "products", key = "#id")
     public ProductDTO findById(Long id) {
         Product product = productRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Product Not Found By Id: {0}", id));
         return productMapper.toProductDTO(product);
     }
 
+    @Cacheable(value = "products", key = "#title")
     public List<ProductDTO> findAllByCategory(String title) {
         return productRepository.findAllByCategoryTitle(title).stream()
                 .map(productMapper::toProductDTO)
                 .toList();
     }
 
+    @Cacheable(value = "products", key = "#id")
     public Product findByIdProduct(Long id) {
         return productRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Product Not Found By Id: {0}", id));
     }
 
     @Override
+    @Cacheable(value = "products", key = "#root.methodName")
     public List<ProductDTO> findAll() {
         return productRepository.findAllWithCompound().stream()
                 .map(productMapper::toProductDTO)

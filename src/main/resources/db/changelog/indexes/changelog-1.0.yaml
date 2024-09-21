@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0001
+      author: Aliabbos Ashurov
+      changes:
+        - addUniqueConstraint:
+            tableName: order_item
+            columnNames: order_id, product_id
+            constraintName: uk_order_item_order_product

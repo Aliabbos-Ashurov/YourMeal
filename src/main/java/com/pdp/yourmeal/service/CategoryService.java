@@ -9,6 +9,7 @@ import com.pdp.yourmeal.repository.CategoryRepository;
 import com.pdp.yourmeal.service.aws.S3Service;
 import com.pdp.yourmeal.service.base.BaseDtoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,11 +27,11 @@ public class CategoryService implements BaseDtoService<Category, Long, CategoryD
     private final CategoryMapper categoryMapper;
 
 
+    @Cacheable(value = "category",key = "#title")
     public CategoryDTO findByTitle(String title) {
         Category category = categoryRepository.findByTitleContainsIgnoreCase(title);
         return categoryMapper.toCategoryDTO(category);
     }
-
 
     public Category findByTitleObject(String title) {
         return categoryRepository.findByTitleContainsIgnoreCase(title);
@@ -48,13 +49,15 @@ public class CategoryService implements BaseDtoService<Category, Long, CategoryD
     }
 
     @Override
-    public CategoryDTO findById(Long aLong) {
-        Category category = categoryRepository.findById(aLong)
-                .orElseThrow(() -> new CategoryNotFoundException("Category not found with id: {0}", aLong));
+    @Cacheable(value = "category",key = "#id")
+    public CategoryDTO findById(Long id) {
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new CategoryNotFoundException("Category not found with id: {0}", id));
         return categoryMapper.toCategoryDTO(category);
     }
 
     @Override
+    @Cacheable(value = "category",key = "#root.methodName")
     public List<CategoryDTO> findAll() {
         List<Category> categoryList = categoryRepository.findAll();
         return categoryList.stream()
