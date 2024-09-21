@@ -10,5 +10,5 @@ public record CreateOrderDTO(
         @NonNull Long userId,
         @NonNull Long productId,
         @NonNull Integer quantity
-) {
+) implements DTO {
 }

@@ -5,6 +5,7 @@ import com.pdp.yourmeal.entity.Product;
 import com.pdp.yourmeal.handler.exception.ResourceNotFoundException;
 import com.pdp.yourmeal.mapper.ProductMapper;
 import com.pdp.yourmeal.repository.ProductRepository;
+import com.pdp.yourmeal.service.base.BaseDtoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

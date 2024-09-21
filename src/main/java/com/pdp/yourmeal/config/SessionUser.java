@@ -24,5 +24,6 @@ public class SessionUser {
 //        if (Objects.isNull(user))
 //            return -1L;
 //        return user.getId();
+        return 0L;
     }
 }

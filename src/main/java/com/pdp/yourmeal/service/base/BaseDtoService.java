@@ -1,4 +1,4 @@
-package com.pdp.yourmeal.service;
+package com.pdp.yourmeal.service.base;
 
 import com.pdp.yourmeal.dto.DTO;
 import com.pdp.yourmeal.entity.Auditable;

@@ -5,6 +5,7 @@ import com.pdp.yourmeal.entity.User;
 import com.pdp.yourmeal.handler.exception.UserNotFoundException;
 import com.pdp.yourmeal.mapper.UserMapper;
 import com.pdp.yourmeal.repository.UserRepository;
+import com.pdp.yourmeal.service.base.BaseDtoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +31,6 @@ public class UserService implements BaseDtoService<User, Long, UserDTO> {
         User user = userRepository.findByPhone(phone).orElseThrow(() -> new UserNotFoundException("User not found with phone: {0}", phone));
         return userMapper.toUserDTO(user);
     }
-
-    public UserDTO findByFirstAndLastName(String first, String lastName) {
-        User user = userRepository.findByFirstAndLastName(first, lastName).orElseThrow(() -> new UserNotFoundException("User not found with first: {0} and last: {1}", first, lastName));
-        return userMapper.toUserDTO(user);
-    }
-
     @Override
     public UserDTO save(UserDTO dto) {
         User user = userMapper.toUser(dto);

@@ -5,7 +5,7 @@ import com.pdp.yourmeal.entity.OrderItem;
 import com.pdp.yourmeal.entity.Product;
 import com.pdp.yourmeal.handler.exception.ResourceNotFoundException;
 import com.pdp.yourmeal.repository.OrderItemRepository;
-import com.pdp.yourmeal.repository.OrderRepository;
+import com.pdp.yourmeal.service.base.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,6 @@ import java.util.Optional;
 public class OrderItemService implements BaseService<OrderItem, Long> {
 
     private final OrderItemRepository orderItemRepository;
-    private final OrderRepository orderRepository;
 
 
     public OrderItem getOrCreate(Order order, Product product, int quantity) {

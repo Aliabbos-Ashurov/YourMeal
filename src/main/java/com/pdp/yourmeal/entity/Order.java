@@ -1,6 +1,7 @@
 package com.pdp.yourmeal.entity;
 
 import com.pdp.yourmeal.enums.OrderStatus;
+import com.pdp.yourmeal.enums.OrderType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -32,9 +33,15 @@ public class Order extends Auditable {
     private Address deliveryAddress;
 
     @Builder.Default
-    @Column(name = "status", nullable = false, length = 30,columnDefinition = "CREATED")
+    @Column(name = "status", nullable = false, length = 30)
     private OrderStatus status = OrderStatus.CREATED;
+
+    @Column(name = "type", nullable = false, length = 30)
+    private OrderType type;
 
     @Column(name = "total_amount", nullable = false)
     private Double totalAmount = 0.0D;
+
+    private String receiverName;
+    private String receiverPhone;
 }

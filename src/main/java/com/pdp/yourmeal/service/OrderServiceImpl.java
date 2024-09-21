@@ -1,10 +1,10 @@
 package com.pdp.yourmeal.service;
 
 import com.pdp.yourmeal.dto.*;
-import com.pdp.yourmeal.entity.Order;
-import com.pdp.yourmeal.entity.OrderItem;
-import com.pdp.yourmeal.entity.Product;
+import com.pdp.yourmeal.entity.*;
 import com.pdp.yourmeal.enums.OrderStatus;
+import com.pdp.yourmeal.handler.exception.OrderNotFoundException;
+import com.pdp.yourmeal.mapper.ProductMapper;
 import com.pdp.yourmeal.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,6 +30,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderItemService orderItemService;
     private final ProductService productService;
     private final ProductMapper productMapper;
+    private final AddressService addressService;
 
     @Override
     public OrderDTO getOrCreate(CreateOrderDTO dto) {
@@ -48,18 +49,33 @@ public class OrderServiceImpl implements OrderService {
         order.setTotalAmount(totalAmount);
         orderRepository.save(order);
         List<OrderItemDTO> itemDTOs = order.getOrderItems().stream()
-                .map(orderI -> OrderItemDTO.of(orderI.getProduct(), orderI.getQuantity()))
+                .map(orderI -> OrderItemDTO.of(productMapper.toProductDTO(orderI.getProduct()), orderI.getQuantity()))
                 .collect(Collectors.toList());
         return OrderDTO.of(order, itemDTOs);
     }
 
     public boolean confirmOrder(ConfirmOrderDTO dto) {
-        Optional<Order> order = orderRepository.findById(dto.orderId());
-        if (order.isPresent()) {
-            order.get().setStatus(OrderStatus.ACCEPTED);
-            orderRepository.save(order.get());
-            return true;
+        Order order = orderRepository.findById(dto.orderId())
+                .orElseThrow(() -> new OrderNotFoundException("Order Not Found With Id: " + dto.orderId()));
+        order.setStatus(OrderStatus.ACCEPTED);
+        order.setType(dto.type());
+        order.setReceiverName(dto.fullname());
+        order.setReceiverPhone(dto.phone());
+        if (dto.address() != null) {
+            Address address = buildAddressFromDTO(dto.address());
+            addressService.save(address);
+            order.setDeliveryAddress(address);
         }
-        return false;
+        orderRepository.save(order);
+        return true;
+    }
+
+    private Address buildAddressFromDTO(Address dtoAddress) {
+        return Address.builder()
+                .street(dtoAddress.getStreet())
+                .apartmentNumber(dtoAddress.getApartmentNumber())
+                .buildingNumber(dtoAddress.getBuildingNumber())
+                .intercom(dtoAddress.getIntercom())
+                .build();
     }
 }
