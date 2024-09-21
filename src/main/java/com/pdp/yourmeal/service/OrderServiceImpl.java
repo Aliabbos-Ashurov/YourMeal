@@ -16,7 +16,6 @@ import com.pdp.yourmeal.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -59,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
             order = orderRepository.save(build);
         }
         Product product = productService.findByIdProduct(dto.productId());
-        OrderItem orderItem = orderItemService.getOrCreate(order, product, dto.quantity());
+        orderItemService.getOrCreate(order, product, dto.quantity());
         double totalAmount = order.getOrderItems().stream()
                 .mapToDouble(item -> item.getPrice() * item.getQuantity())
                 .sum();

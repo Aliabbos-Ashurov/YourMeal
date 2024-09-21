@@ -5,7 +5,6 @@ import com.pdp.yourmeal.entity.Product;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 /**
  * @author Aliabbos Ashurov

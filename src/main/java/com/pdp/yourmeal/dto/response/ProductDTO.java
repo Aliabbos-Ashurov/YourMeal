@@ -1,7 +1,6 @@
 package com.pdp.yourmeal.dto.response;
 
 import com.pdp.yourmeal.dto.DTO;
-import com.pdp.yourmeal.entity.Category;
 import lombok.NonNull;
 
 import java.util.List;

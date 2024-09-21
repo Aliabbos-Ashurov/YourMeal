@@ -2,7 +2,6 @@ package com.pdp.yourmeal.controller;
 
 import com.pdp.yourmeal.dto.request.TokenRequestDTO;
 import com.pdp.yourmeal.dto.request.UserRegisterDTO;
-import com.pdp.yourmeal.dto.response.UserDTO;
 import com.pdp.yourmeal.entity.User;
 import com.pdp.yourmeal.service.AuthService;
 import com.pdp.yourmeal.service.UserService;

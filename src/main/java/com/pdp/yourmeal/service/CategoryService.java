@@ -9,7 +9,6 @@ import com.pdp.yourmeal.repository.CategoryRepository;
 import com.pdp.yourmeal.service.aws.S3Service;
 import com.pdp.yourmeal.service.base.BaseDtoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
