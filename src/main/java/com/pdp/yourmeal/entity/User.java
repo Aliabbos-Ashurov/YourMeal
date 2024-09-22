@@ -1,10 +1,8 @@
 package com.pdp.yourmeal.entity;
 
+import com.pdp.yourmeal.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -37,4 +35,8 @@ public class User extends Auditable {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
+
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.USER;
 }

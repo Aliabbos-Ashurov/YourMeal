@@ -8,7 +8,6 @@ import com.pdp.yourmeal.dto.response.OrderItemDTO;
 import com.pdp.yourmeal.dto.response.ProductDTO;
 import com.pdp.yourmeal.entity.Address;
 import com.pdp.yourmeal.entity.Order;
-import com.pdp.yourmeal.entity.OrderItem;
 import com.pdp.yourmeal.entity.Product;
 import com.pdp.yourmeal.enums.OrderStatus;
 import com.pdp.yourmeal.enums.OrderType;
@@ -16,7 +15,6 @@ import com.pdp.yourmeal.handler.exception.OrderNotFoundException;
 import com.pdp.yourmeal.mapper.ProductMapper;
 import com.pdp.yourmeal.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,7 +40,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    @Cacheable(value = "orders", key = "#userId")
     public OrderDTO getUserOrder(Long userId) {
         Order order = orderRepository.findByUserIdAndStatus(userId, OrderStatus.CREATED);
         if (Objects.isNull(order)) throw new OrderNotFoundException("Order not found with user-id: {0}", userId);

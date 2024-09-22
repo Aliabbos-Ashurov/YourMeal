@@ -6,11 +6,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
+
+import javax.naming.AuthenticationException;
 
 /**
  * @author Aliabbos Ashurov
@@ -33,6 +34,20 @@ public class GlobalExceptionHandler {
     public ErrorMessageDTO handleUserNotFoundException(UserNotFoundException e, HttpServletRequest request) {
         logException(e, request);
         return ErrorMessageDTO.of("USER_NOT_FOUND", e.getMessage(), request.getRequestURI());
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorMessageDTO handleAuthenticationException(AuthenticationException e, HttpServletRequest request) {
+        logException(e, request);
+        return ErrorMessageDTO.of("AUTHENTICATION_FAILED", "Invalid username or password", request.getRequestURI());
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorMessageDTO handleGenericException(Exception e, HttpServletRequest request) {
+        logException(e, request);
+        return ErrorMessageDTO.of("INTERNAL_ERROR", e.getMessage(), request.getRequestURI());
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)

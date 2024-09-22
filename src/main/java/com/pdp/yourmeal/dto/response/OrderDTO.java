@@ -19,6 +19,7 @@ public record OrderDTO(
 ) implements DTO {
     public static OrderDTO of(Order order, List<OrderItemDTO> items) {
         double sum = items.stream().mapToDouble(OrderItemDTO::price).sum();
-        return new OrderDTO(order.getId(), order.getUser().getId(), items, items.size(), sum);
+        int quantity = items.stream().mapToInt(OrderItemDTO::quantity).sum();
+        return new OrderDTO(order.getId(), order.getUser().getId(), items, quantity, sum);
     }
 }

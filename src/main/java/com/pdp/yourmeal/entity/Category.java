@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder(toBuilder = true)
 @Entity
-public class Category extends Auditable {
+public class Category extends Auditable{
 
     @Column(name = "icon")
     private String icon;

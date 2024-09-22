@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder(toBuilder = true)
 @Entity
-public class Address extends Auditable {
+public class Address extends Auditable{
 
     @Column(name = "street", nullable = false)
     private String street;

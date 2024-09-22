@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0002
+      author: Aliabbos Ashurov
+      changes:
+        - createIndex:
+            tableName: users
+            indexName: idx_user_username
+            columns:
+              - column:
+                  name: username

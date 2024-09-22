@@ -1,7 +1,6 @@
 package com.pdp.yourmeal.dto.request;
 
 import com.pdp.yourmeal.dto.DTO;
-import com.pdp.yourmeal.entity.Address;
 import com.pdp.yourmeal.enums.OrderType;
 import lombok.NonNull;
 

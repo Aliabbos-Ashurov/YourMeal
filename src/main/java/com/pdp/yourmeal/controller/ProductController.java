@@ -2,7 +2,6 @@ package com.pdp.yourmeal.controller;
 
 import com.pdp.yourmeal.dto.request.CreateProductDTO;
 import com.pdp.yourmeal.dto.response.ProductDTO;
-import com.pdp.yourmeal.service.CategoryService;
 import com.pdp.yourmeal.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
