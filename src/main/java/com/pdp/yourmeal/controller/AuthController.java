@@ -3,6 +3,7 @@ package com.pdp.yourmeal.controller;
 import com.pdp.yourmeal.dto.request.TokenRequestDTO;
 import com.pdp.yourmeal.dto.request.UserRegisterDTO;
 import com.pdp.yourmeal.dto.response.TokensDTO;
+import com.pdp.yourmeal.dto.response.UserDTO;
 import com.pdp.yourmeal.service.UserService;
 import com.pdp.yourmeal.util.JwtTokenUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,9 +34,12 @@ public class AuthController {
 
     @Operation(summary = "Register a new user", description = "Creates a new user with the provided details.")
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserRegisterDTO dto) {
-        userService.save(dto);
-        return ResponseEntity.ok("success");
+    public ResponseEntity<TokensDTO> register(@RequestBody UserRegisterDTO dto) {
+        UserDTO user = userService.save(dto);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.username(), dto.password());
+        authenticationManager.authenticate(authenticationToken);
+        String accessToken = jwtTokenUtil.generateAccessToken(dto.username());
+        return ResponseEntity.ok(new TokensDTO(accessToken));
     }
 
     @Operation(summary = "Generate access and refresh tokens", description = "Authenticates the user and generates a pair of JWT tokens (access and refresh).")

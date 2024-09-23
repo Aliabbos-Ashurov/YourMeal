@@ -43,13 +43,14 @@ public class UserService implements BaseDtoService<User, Long, UserDTO> {
         return userMapper.toUserDTO(savingUser);
     }
 
-    public void save(UserRegisterDTO dto) {
-        userRepository.save(User.builder()
+    public UserDTO save(UserRegisterDTO dto) {
+        User save = userRepository.save(User.builder()
                 .fullname(dto.fullname())
                 .username(dto.username())
                 .phone(dto.phone())
                 .password(passwordEncoder.encode(dto.password()))
                 .build());
+        return userMapper.toUserDTO(save);
     }
 
     @Override

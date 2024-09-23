@@ -9,6 +9,7 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import org.springdoc.core.models.GroupedOpenApi;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,6 +22,11 @@ import java.util.List;
  **/
 @Configuration
 public class OpenApiConfiguration {
+
+    @Value("${project.localhost}")
+    private String HOST;
+    @Value("${server.port}")
+    private String PORT;
 
     @Bean
     public OpenAPI customOpenAPI() {
@@ -42,7 +48,8 @@ public class OpenApiConfiguration {
                         .description("Your Meal Project Documentation")
                         .url("https://yourmealproject.wiki.github.org/docs"))
                 .servers(List.of(
-                        new Server().url("http://localhost:8080").description("Production Server")
+                        new Server().url("http://" + HOST + ":" + PORT).description("Production Server"),
+                        new Server().url("http://localhost:8080").description("Testing Server")
                 ))
                 .components(new Components()
                         .addSecuritySchemes("bearer-jwt",
@@ -67,6 +74,14 @@ public class OpenApiConfiguration {
         return GroupedOpenApi.builder()
                 .group("products")
                 .pathsToMatch("/api/product/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi userOpenApi() {
+        return GroupedOpenApi.builder()
+                .group("users")
+                .pathsToMatch("/api/user/**")
                 .build();
     }
 

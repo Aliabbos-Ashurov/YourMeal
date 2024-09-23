@@ -8,6 +8,7 @@ import lombok.NonNull;
  * @since 20/September/2024  09:11
  **/
 public record CategoryDTO(
+        Long id,
         @NonNull String icon,
         @NonNull String title) implements DTO {
 }

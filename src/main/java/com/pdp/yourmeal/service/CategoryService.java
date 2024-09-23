@@ -42,7 +42,7 @@ public class CategoryService implements BaseDtoService<Category, Long, CategoryD
 
     public CategoryDTO create(CreateCategoryDTO categoryDTO) {
         String imageURL = s3Service.uploadFile(categoryDTO.icon());
-        return save(new CategoryDTO(imageURL, categoryDTO.title()));
+        return save(new CategoryDTO(null,imageURL, categoryDTO.title()));
     }
 
     @Override
