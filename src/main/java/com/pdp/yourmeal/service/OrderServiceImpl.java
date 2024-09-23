@@ -69,7 +69,6 @@ public class OrderServiceImpl implements OrderService {
                 .mapToDouble(item -> item.getPrice() * item.getQuantity())
                 .sum();
         order.setTotalAmount(totalAmount);
-        ;
         orderRepository.save(order);
         List<OrderItemDTO> itemDTOs = order.getOrderItems().stream()
                 .map(orderI -> OrderItemDTO.of(productMapper.toProductDTO(orderI.getProduct()), orderI.getQuantity()))
